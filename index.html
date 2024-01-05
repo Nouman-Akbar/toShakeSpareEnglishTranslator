@@ -7,7 +7,8 @@
     <meta name="Author" content="Muhammad Nouman Akbar (KAF Creatives)">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:title" content="Modern English to ShakeSpare's English Translator">
-    <meta property="og:image" content="url('download.jpeg')">
+    <meta property="og:image"
+        content="https://raw.githubusercontent.com/Nouman-Akbar/toShakeSpareEnglishTranslator/main/download.jpeg">
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:description"
@@ -24,12 +25,7 @@
             box-sizing: border-box;
         }
 
-        .container {
-            width: 100vw;
-            height: 100vh;
-            max-width: 1400px;
-            padding: 10px 20px;
-            margin: 0 auto;
+        section {
             background: radial-gradient(rgba(255, 255, 255, 0) 0,
                     rgba(255, 255, 255, 0.15) 30%,
                     rgba(255, 255, 255, 0.3) 32%,
@@ -69,6 +65,14 @@
             background-color: #840b2a;
         }
 
+        .container {
+            width: 100vw;
+            height: 100vh;
+            max-width: 1400px;
+            padding: 10px 20px;
+            margin: 0 auto;
+        }
+
         .inner_container {
             width: 100%;
             height: 100%;
@@ -90,13 +94,13 @@
 
         .heading_row {
             width: 100%;
-            padding: 10px 20px;
+            padding: 15px 10px;
         }
 
         .heading_row .title {
             width: fit-content;
             font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-            font-size: 30px;
+            font-size: 35px;
             text-align: center;
             font-weight: 800;
             letter-spacing: 1px;
@@ -194,7 +198,7 @@
             padding: 5px 0;
         }
 
-        .searchButton {
+        .submitButton {
             color: white;
             position: absolute;
             right: 8px;
@@ -205,6 +209,7 @@
             border: 0;
             display: inline-block;
             transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+            cursor: pointer;
         }
 
         button:hover {
@@ -231,7 +236,6 @@
             font-weight: 500;
             padding: 4px 20px;
             height: auto;
-            resize: none;
         }
 
         .searchInput::placeholder {
@@ -240,9 +244,11 @@
             top: 50%;
             transform: translateY(-50%);
         }
-.searchInput:--webkit-scrollbar{
-    width: 3px;
-}
+
+        .searchInput:focus::placeholder {
+            visibility: hidden;
+        }
+
         .response,
         .question {
             width: max-content;
@@ -265,24 +271,24 @@
         }
 
         .response.error {
-            background-color: #ee1f53;
+            background-color: #d00000;
             position: relative;
         }
 
         .response.error::before {
             content: "Error";
             position: absolute;
-            top: 100%;
-            right: 0;
+            top: 0%;
+            left: 0;
             transform: translateY(-100%);
-            padding: 10px 10px;
+            padding: 3px 10px;
             display: flex;
             justify-content: center;
             align-items: center;
             aspect-ratio: 16/4;
-            background-color: #ee1f53;
-            color: #2AF598;
-            border-radius: 0px 20px 20px 20px;
+            background-color: #023047;
+            color: #fff;
+            border-radius: 20px 20px 20px 0;
         }
 
         @media screen and (max-width: 992px) {
@@ -292,11 +298,19 @@
                 max-width: 650px;
                 font-size: 16px;
             }
+
+            .heading_row .title {
+                font-size: 30px;
+            }
         }
 
         @media screen and (max-width: 767px) {
             .container {
                 padding: 10px;
+            }
+
+            .heading_row .title {
+                font-size: 25px;
             }
 
             .question,
@@ -325,15 +339,14 @@
                         Nouman Akbar is an aspiring developer who built this tool.
                     </div>
                     <div class="response">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Non vero et optio numquam cupiditate.
-                        Laudantium blanditiis illum quidem modi labore dolorum unde perspiciatis, incidunt perferendis,
-                        sequi aut error omnis laboriosam?
+                        Nouman Akbar is an aspiring developer who is't did doth build this tool.
                     </div>
                 </div>
                 <form class="input_box">
-                    <textarea class="searchInput" type="text" rows="2" id="text_input" required
-                        placeholder="Text in Simple English"></textarea>
-                    <button class="searchButton" type="submit">
+                    <textarea class="searchInput" type="text" rows="2" id="text_input" minlength="1" required
+                        placeholder="Text in Simple English"
+                        oninvalid="this.setCustomValidity('Enter the text here!')"></textarea>
+                    <button class="submitButton" type="submit">
                         <img src="send_icon.png" alt="Send Question">
                     </button>
                 </form>
@@ -342,12 +355,14 @@
     </section>
     <script>
         const inputField = document.querySelector('.searchInput');
-        const submitButton = document.querySelector('.searchButton');
+        const submitButton = document.querySelector('.submitButton');
         const apiKey = 'cbc656044emsh6dcc21acb6a7c7cp149e49jsn669b02317a7d';
         const apiUrl = 'https://api.funtranslations.com/translate/shakespeare.json';
         document.querySelector('.input_box').addEventListener('submit', function (event) {
             event.preventDefault();
-            fetchData();
+            if (inputField.checkValidity()) {
+                fetchData();
+            }
         });
         let fetchData = async (event) => {
             const recent_messages = document.querySelector('.recent_messages')
@@ -372,11 +387,11 @@
             } catch (error) {
                 fetch(finalURL)
                 console.error('Error fetching response:', error);
-                responseElement.textContent = 'Shakespeare(Server) is busy! Try after sometime.';
+                responseElement.innerHTML = 'Not Found! Probably Shakespeare is sleeping! Try again later. &#128512;';
                 responseElement.classList.add('error')
             }
             let clearValue = setTimeout(() => {
-                document.querySelector('input').value = ""
+                document.querySelector('.searchInput').value = ""
                 clearTimeout(clearValue)
             }, 50);
         };
@@ -384,7 +399,8 @@
             var encodedURI = encodeURI(inputValue);
             let translatedURL = `${apiUrl}?text=${encodedURI}`;
             return translatedURL;
-        }//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
+        }
+        //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
     </script>
 </body>
 
