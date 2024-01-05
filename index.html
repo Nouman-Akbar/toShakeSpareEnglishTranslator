@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="Nouman Akbar, English translator, Shakespeare, Modern English">
+    <meta name="Author" content="Muhammad Nouman Akbar (KAF Creatives)">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Modern English to ShakeSpare's English Translator">
+    <meta property="og:image" content="url('download.jpeg')">
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:description"
+        content="A tool built by aspiring developer Muhammad Nouman Akbar, used to translate Modern English to ShakeSpare's English.">
+    <link rel="shortcut icon" href="favicon2.png" type="image/x-icon">
+    <title>ShakeSpare's English Translator</title>
+    <style>
+        *,
+        *::after,
+        *::before,
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 100vw;
+            height: 100vh;
+            max-width: 1400px;
+            padding: 10px 20px;
+            margin: 0 auto;
+            background: radial-gradient(rgba(255, 255, 255, 0) 0,
+                    rgba(255, 255, 255, 0.15) 30%,
+                    rgba(255, 255, 255, 0.3) 32%,
+                    rgba(255, 255, 255, 0) 33%) 0 0,
+                radial-gradient(rgba(255, 255, 255, 0) 0,
+                    rgba(255, 255, 255, 0.1) 11%,
+                    rgba(255, 255, 255, 0.3) 13%,
+                    rgba(255, 255, 255, 0) 14%) 0 0,
+                radial-gradient(rgba(255, 255, 255, 0) 0,
+                    rgba(255, 255, 255, 0.2) 17%,
+                    rgba(255, 255, 255, 0.43) 19%,
+                    rgba(255, 255, 255, 0) 20%) 0 110px,
+                radial-gradient(rgba(255, 255, 255, 0) 0,
+                    rgba(255, 255, 255, 0.2) 11%,
+                    rgba(255, 255, 255, 0.4) 13%,
+                    rgba(255, 255, 255, 0) 14%) -130px -170px,
+                radial-gradient(rgba(255, 255, 255, 0) 0,
+                    rgba(255, 255, 255, 0.2) 11%,
+                    rgba(255, 255, 255, 0.4) 13%,
+                    rgba(255, 255, 255, 0) 14%) 130px 370px,
+                radial-gradient(rgba(255, 255, 255, 0) 0,
+                    rgba(255, 255, 255, 0.1) 11%,
+                    rgba(255, 255, 255, 0.2) 13%,
+                    rgba(255, 255, 255, 0) 14%) 0 0,
+                linear-gradient(45deg,
+                    #343702 0%,
+                    #184500 20%,
+                    #187546 30%,
+                    #006782 40%,
+                    #0b1284 50%,
+                    #760ea1 60%,
+                    #83096e 70%,
+                    #840b2a 80%,
+                    #b13e12 90%,
+                    #e27412 100%);
+            background-size: cover;
+            background-color: #840b2a;
+        }
+
+        .inner_container {
+            width: 100%;
+            height: 100%;
+            background-image: repeating-linear-gradient(-45deg,
+                    orange 0,
+                    transparent 30px,
+                    orangered 30px,
+                    transparent 60px,
+                    orange 120px,
+                    transparent 240px);
+            background-color: orange;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+            align-items: stretch;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .heading_row {
+            width: 100%;
+            padding: 10px 20px;
+        }
+
+        .heading_row .title {
+            width: fit-content;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 30px;
+            text-align: center;
+            font-weight: 800;
+            letter-spacing: 1px;
+            background: linear-gradient(233deg, #e56420, #c22525, #3d9c31, #37bbde);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: cover;
+            background-blend-mode: hard-light;
+            -webkit-animation: hue-rotate 3s linear infinite;
+            animation: hue-rotate 3s linear alternate-reverse infinite;
+        }
+
+        @keyframes hue-rotate {
+            0% {
+                -webkit-filter: hue-rotate(0);
+                -moz-filter: hue-rotate(0);
+                -ms-filter: hue-rotate(0);
+                filter: hue-rotate(0);
+                color: hsl(230, 40%, 80%);
+                transform: skewY(0) scale(1.0);
+                text-shadow:
+                    0 0 1em hsla(320, 100%, 50%, 0.2),
+                    0 0 0.125em hsla(320, 100%, 60%, 0.3),
+                    -1em -0.125em 0.5em hsla(40, 100%, 60%, 0),
+                    1em 0.125em 0.5em hsla(200, 100%, 60%, 0);
+            }
+
+            30% {
+                color: hsl(230, 80%, 90%);
+                text-shadow:
+                    0 0 1em hsla(320, 100%, 50%, 0.5),
+                    0 0 0.125em hsla(320, 100%, 60%, 0.5),
+                    -0.5em -0.125em 0.25em hsla(40, 100%, 60%, 0.2),
+                    0.5em 0.125em 0.25em hsla(200, 100%, 60%, 0.4);
+            }
+
+            40% {
+                color: hsl(230, 100%, 95%);
+                text-shadow:
+                    0 0 1em hsla(320, 100%, 50%, 0.5),
+                    0 0 0.125em hsla(320, 100%, 90%, 0.5),
+                    -0.25em -0.125em 0.125em hsla(40, 100%, 60%, 0.2),
+                    0.25em 0.125em 0.125em hsla(200, 100%, 60%, 0.4);
+            }
+
+            70% {
+                color: hsl(230, 80%, 90%);
+                text-shadow:
+                    0 0 1em hsla(320, 100%, 50%, 0.5),
+                    0 0 0.125em hsla(320, 100%, 60%, 0.5),
+                    0.5em -0.125em 0.25em hsla(40, 100%, 60%, 0.2),
+                    -0.5em 0.125em 0.25em hsla(200, 100%, 60%, 0.4);
+            }
+
+            100% {
+                -webkit-filter: hue-rotate(360deg);
+                -moz-filter: hue-rotate(360deg);
+                -ms-filter: hue-rotate(360deg);
+                filter: hue-rotate(360deg);
+                color: hsl(230, 40%, 80%);
+                text-shadow:
+                    0 0 1em hsla(320, 100%, 50%, 0.2),
+                    0 0 0.125em hsla(320, 100%, 60%, 0.3),
+                    1em -0.125em 0.5em hsla(40, 100%, 60%, 0),
+                    -1em 0.125em 0.5em hsla(200, 100%, 60%, 0);
+                transform: skewY(50px) scale(1.3);
+            }
+        }
+
+        .recent_messages {
+            width: 100%;
+            height: 100%;
+            padding-bottom: 10px;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+        }
+
+        .recent_messages::-webkit-scrollbar {
+            width: 3px;
+        }
+
+        .input_box {
+            display: flex;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            background: #2f3640;
+            border-radius: 50px;
+            position: relative;
+            bottom: 10px;
+            padding: 5px 0;
+        }
+
+        .searchButton {
+            color: white;
+            position: absolute;
+            right: 8px;
+            width: 40px;
+            aspect-ratio: 1/1;
+            border-radius: 50%;
+            background: var(--gradient-2, linear-gradient(90deg, #2AF598 0%, #009EFD 100%));
+            border: 0;
+            display: inline-block;
+            transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+        }
+
+        button:hover {
+            color: #fff;
+            background-color: #1A1A1A;
+            box-shadow: rgba(0, 0, 0, 0.5) 0 10px 20px;
+            transform: translateY(-3px);
+        }
+
+        button:active {
+            box-shadow: none;
+            transform: translateY(0);
+        }
+
+        .searchInput {
+            border: none;
+            background: transparent;
+            outline: none;
+            text-wrap: wrap;
+            color: white;
+            width: 100%;
+            font-size: 15px;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-weight: 500;
+            padding: 4px 20px;
+            height: auto;
+        }
+
+        .searchInput::placeholder {
+            vertical-align: middle;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .response,
+        .question {
+            width: max-content;
+            max-width: 930px;
+            clear: both;
+            padding: 10px 20px;
+            background-color: #999;
+            margin: 20px;
+            border-radius: 0px 20px 20px 20px;
+            color: #fff;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-weight: 500;
+        }
+
+        .question {
+            margin-left: 20px;
+            float: right;
+            border-radius: 20px 0px 20px 20px;
+            background-color: #184500;
+        }
+
+        .response.error {
+            background-color: #ee1f53;
+            position: relative;
+        }
+
+        .response.error::before {
+            content: "Error";
+            position: absolute;
+            top: 100%;
+            right: 0;
+            transform: translateY(-100%);
+            padding: 10px 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            aspect-ratio: 16/4;
+            background-color: #ee1f53;
+            color: #2AF598;
+            border-radius: 0px 20px 20px 20px;
+        }
+
+        @media screen and (max-width: 992px) {
+
+            .question,
+            .response {
+                max-width: 650px;
+                font-size: 16px;
+            }
+        }
+
+        @media screen and (max-width: 767px) {
+            .container {
+                padding: 10px;
+            }
+
+            .question,
+            .response {
+                width: fit-content;
+                font-size: 14px;
+                margin: 10px 10px;
+            }
+
+            .question {
+                margin-left: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <div class="container">
+            <div class="inner_container">
+                <div class="heading_row">
+                    <h2 class="title">Translate To ShakeSpare's English</h2>
+                </div>
+                <div class="recent_messages">
+                    <div class="question">
+                        Nouman Akbar is an aspiring developer who built this tool.
+                    </div>
+                    <div class="response">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Non vero et optio numquam cupiditate.
+                        Laudantium blanditiis illum quidem modi labore dolorum unde perspiciatis, incidunt perferendis,
+                        sequi aut error omnis laboriosam?
+                    </div>
+                </div>
+                <form class="input_box">
+                    <textarea class="searchInput" type="text" rows="2" id="text_input" required
+                        placeholder="Text in Simple English"></textarea>
+                    <button class="searchButton" type="submit">
+                        <img src="send_icon.png" alt="Send Question">
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <script>
+        const inputField = document.querySelector('.searchInput');
+        const submitButton = document.querySelector('.searchButton');
+        const apiKey = 'cbc656044emsh6dcc21acb6a7c7cp149e49jsn669b02317a7d';
+        const apiUrl = 'https://api.funtranslations.com/translate/shakespeare.json';
+        document.querySelector('.input_box').addEventListener('submit', function (event) {
+            event.preventDefault();
+            fetchData();
+        });
+        let fetchData = async (event) => {
+            const recent_messages = document.querySelector('.recent_messages')
+            const questionEl = document.createElement('div');
+            questionEl.classList.add('question')
+            recent_messages.append(questionEl)
+            const userInput = inputField.value;
+            questionEl.innerHTML = userInput;
+            const responseElement = document.createElement('div');
+            responseElement.classList.add('response')
+            recent_messages.append(responseElement)
+            let finalURL = translatedURL(userInput);
+            try {
+                var response = await fetch(finalURL);
+
+                if (!response.ok) {
+                    throw new Error(`API request failed with status ${response.status}`);
+                }
+
+                const data = await response.json();
+                responseElement.textContent = data.contents.translated;
+            } catch (error) {
+                fetch(finalURL)
+                console.error('Error fetching response:', error);
+                responseElement.textContent = 'Shakespeare(Server) is busy! Try after sometime.';
+                responseElement.classList.add('error')
+            }
+            let clearValue = setTimeout(() => {
+                document.querySelector('input').value = ""
+                clearTimeout(clearValue)
+            }, 50);
+        };
+        let translatedURL = (inputValue) => {
+            var encodedURI = encodeURI(inputValue);
+            let translatedURL = `${apiUrl}?text=${encodedURI}`;
+            return translatedURL;
+        }//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
+    </script>
+</body>
+
+</html>
